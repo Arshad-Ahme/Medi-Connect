@@ -1,6 +1,14 @@
 package com.edutech.progressive.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Doctor implements Comparable<Doctor> {
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
 private int doctorId;
 private String fullName;
 private String specialty;
@@ -9,6 +17,15 @@ private String email;
 private int yearsOfExperience;
 public Doctor() {
 }
+
+public Doctor(String fullName, String specialty, String contactNumber, String email, int yearsOfExperience) {
+    this.fullName = fullName;
+    this.specialty = specialty;
+    this.contactNumber = contactNumber;
+    this.email = email;
+    this.yearsOfExperience = yearsOfExperience;
+}
+
 public Doctor(int doctorId, String fullName, String specialty, String contactNumber, String email,
         int yearsOfExperience) {
     this.doctorId = doctorId;

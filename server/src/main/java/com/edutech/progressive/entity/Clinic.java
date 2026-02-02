@@ -1,6 +1,14 @@
 package com.edutech.progressive.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Clinic {
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
 private int clinicId;
 private String clinicName;
 private String location;
@@ -16,6 +24,15 @@ public Clinic(int clinicId, String clinicName, String location, int doctorId, St
     this.contactNumber = contactNumber;
     this.establishedYear = establishedYear;
 }
+
+public Clinic(String clinicName, String location, int doctorId, String contactNumber, int establishedYear) {
+    this.clinicName = clinicName;
+    this.location = location;
+    this.doctorId = doctorId;
+    this.contactNumber = contactNumber;
+    this.establishedYear = establishedYear;
+}
+
 public Clinic() {
 }
 public int getClinicId() {

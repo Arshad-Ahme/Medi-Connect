@@ -20,14 +20,15 @@ public class PatientDAOImpl implements PatientDAO{
         try {
             connection=DatabaseConnectionManager.getConnection();
         } catch (SQLException e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
     }
     @Override
     public int addPatient(Patient patient) {
       String sql="INSERT INTO patient(full_name,date_of_birth,contact_number,email,address) VALUES(?,?,?,?,?)";
-      try(PreparedStatement ps=connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
+      PreparedStatement ps=null;
+      try{
+        ps=connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, patient.getFullName());
         ps.setDate(2, new Date(patient.getDateOfBirth().getTime()));
         ps.setString(3, patient.getContactNumber());
@@ -42,9 +43,9 @@ public class PatientDAOImpl implements PatientDAO{
         }
       } catch (SQLException e) {
         // TODO Auto-generated catch block
-        e.printStackTrace();
+        e.printStackTrace();;
     }
-    return 0;
+    return -1;
     }
    
     @Override
@@ -112,7 +113,7 @@ public class PatientDAOImpl implements PatientDAO{
         while(rs.next()){
         int id=rs.getInt("patient_id");
         String full_name=rs.getString("full_name");
-        Date date_of_birth=rs.getDate("date_of_birth");
+        Date date_of_birth=new Date(rs.getDate("date_of_birth").getTime());
         String contact_number=rs.getString("contact_number");
         String email=rs.getString("email");
         String address=rs.getString("address");

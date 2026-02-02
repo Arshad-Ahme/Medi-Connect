@@ -44,7 +44,7 @@ public class ClinicDAOImpl implements ClinicDAO {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return 0;
+        return -1;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class ClinicDAOImpl implements ClinicDAO {
     @Override
     public List<Clinic> getAllClinics() {
         List<Clinic> clinics = new ArrayList<>();
-        String sql = "SELECT * FROM  clinic ";
+        String sql = "SELECT * FROM  clinic";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ResultSet rs = ps.executeQuery();
